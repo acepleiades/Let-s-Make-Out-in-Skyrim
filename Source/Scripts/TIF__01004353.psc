@@ -16,6 +16,13 @@ float newtime = currenthour + 2
 GameHour.SetValue(newtime)
 Utility.Wait(1)
 
+akspeaker.AddToFaction(LMOS_RelationshipFaction)
+if akspeaker.GetFactionRank(LMOS_RelationshipFaction) < 10
+int currentrank = akspeaker.GetFactionRank(LMOS_RelationshipFaction)
+int newrank = currentrank + 1
+akspeaker.SetFactionRank(LMOS_RelationshipFaction, newrank)
+endif
+
 Game.EnablePlayerControls()
 ;END CODE
 EndFunction
@@ -25,3 +32,4 @@ EndFunction
 
 GlobalVariable Property GameHour  auto
 actor property playerref auto
+Faction Property LMOS_RelationshipFaction  Auto  
