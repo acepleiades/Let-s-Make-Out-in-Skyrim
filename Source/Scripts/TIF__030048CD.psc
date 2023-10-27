@@ -6,6 +6,11 @@ Scriptname TIF__030048CD Extends TopicInfo Hidden
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
+if akspeaker.IsInFaction(LMOS_ThisNPCWasInPlayerBedFaction) == 0
+akspeaker.RemoveFromFaction(PlayerBedOwnership)
+endif
+akspeaker.RemoveFromFaction(LMOS_ThisNPCWasInPlayerBedFaction)
+
 HouseVisitAlias.Clear()
 akspeaker.EvaluatePackage()
 VisitorVariable.SetValue(0)
@@ -17,4 +22,5 @@ EndFunction
 
 ReferenceAlias property HouseVisitAlias  Auto
 GlobalVariable Property VisitorVariable  Auto  
-
+Faction Property PlayerBedOwnership  Auto  
+Faction Property LMOS_ThisNPCWasInPlayerBedFaction  Auto  

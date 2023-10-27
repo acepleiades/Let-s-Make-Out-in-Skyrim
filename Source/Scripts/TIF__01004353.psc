@@ -8,13 +8,26 @@ Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
 game.disablePlayerControls()
 
+Int aiButton = LMOS_CompanyMESG.Show()
+If aiButton == 0
+	Debug.Notification("You had a chat with your lover.")
+ElseIf aiButton == 1
+	Debug.Notification("Your lover was fascinated by your words.")
+ElseIf aiButton == 2
+	Debug.Notification("You exchanged flirty remarks with your lover.")
+ElseIf aiButton == 3
+	Debug.Notification("You left a good impression with your lover.")
+EndIf
+
 Game.FadeOutGame(false, true, 2.0, 1.0)
 Utility.Wait(1)
-Debug.notification("You spent some time with your partner.")
+
 float currenthour = GameHour.GetValue()
 float newtime = currenthour + 2
 GameHour.SetValue(newtime)
 Utility.Wait(1)
+
+Debug.Notification("Spending time with your lover was enjoyable.")
 
 akspeaker.AddToFaction(LMOS_RelationshipFaction)
 if akspeaker.GetFactionRank(LMOS_RelationshipFaction) < 10
@@ -33,3 +46,4 @@ EndFunction
 GlobalVariable Property GameHour  auto
 actor property playerref auto
 Faction Property LMOS_RelationshipFaction  Auto  
+Message Property LMOS_CompanyMESG  Auto  
